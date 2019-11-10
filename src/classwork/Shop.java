@@ -26,8 +26,8 @@ public class Shop {
                 if (list.get(j).getClass().equals(list.get(i).getClass())) {
                     count++;
                 }
-                map.put(list.get(i), count);
             }
+            map.put(list.get(i), count);
         }
         return map;
     }
