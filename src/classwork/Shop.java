@@ -17,13 +17,22 @@ public class Shop {
         return list;
     }
 
-    public Map getCheck() {
+    public List<Integer> getListWithIdItem (){
+        List<Integer> listIds = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            listIds.add(list.get(i).getId());
+        }
+        return listIds;
+    }
+
+
+    public Map getCheck(List<Integer> listIds) {
         Map<Item, Integer> map = new HashMap();
         int count;
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < listIds.size(); i++) {
             count = 0;
             for (int j = 0; j < list.size(); j++) {
-                if (list.get(j).getClass().equals(list.get(i).getClass())) {
+                if (list.get(j).getId()) {
                     count++;
                 }
             }
