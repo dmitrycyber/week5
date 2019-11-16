@@ -21,8 +21,23 @@ public class Shop2 implements ShopInter {
     }
 
     public Map<Item,Integer> getCheck(List<Integer> listIds) {
+        boolean isEnoughItems = true;
+        Item item = new Keyboard(1, 3, "123");
         for (int i = 0; i < listIds.size(); i++) {
-            if (mapOfItems.get())
+            for (Map.Entry<Item, Integer> entry : mapOfItems.entrySet()) {
+                if (listIds.get(i) == entry.getKey().getId() && entry.getValue() > 1) {
+                    isEnoughItems = true;
+                    entry.setValue(entry.getValue()-1);
+                }
+                else if (listIds.get(i) == entry.getKey().getId() && entry.getValue() == 1) {
+                    isEnoughItems = false;
+                    item = entry.getKey();
+                }
+            }
+            if (!isEnoughItems) {
+                mapOfItems.remove(item);
+            }
+
         }
         return mapOfItems;
     }
