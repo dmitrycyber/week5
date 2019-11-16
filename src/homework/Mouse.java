@@ -1,4 +1,4 @@
-package classwork;
+package homework;
 
 public class Mouse extends Item {
     public Mouse(int id, int price, String name) {
