@@ -8,12 +8,8 @@ import java.util.Map;
 public class Shop1 implements ShopInter {
     private List<Item> listOfItems = new ArrayList<>();
 
-    public void putInShop (Item item) {
+    void putInShop(Item item) {
         listOfItems.add(item);
-    }
-
-    public List<Item> getListOfItems() {
-        return listOfItems;
     }
 
     public Map getCheck(List<Integer> listIds) {
@@ -43,8 +39,11 @@ public class Shop1 implements ShopInter {
     }
 
     public void printCheck (List<Integer> listIds) {
-        Map map = getCheck(listIds);
-        System.out.println(map);
+        Map<String, Integer> map= getCheck(listIds);
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry);
+        }
+        System.out.println("================");
         System.out.println("Total price: " + getTotalPrice(listIds));
     }
 }
