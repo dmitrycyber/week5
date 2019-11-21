@@ -5,45 +5,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Shop1 implements ShopInter {
+public class Shop1 implements Shop {
     private List<Item> listOfItems = new ArrayList<>();
+    private Check check;
 
     void putInShop(Item item) {
+        if (item == null) {
+            return;
+        }
         listOfItems.add(item);
     }
 
-    public Map getCheck(List<Integer> listIds) {
-        Map<String, Integer> map = new HashMap();
+    public Check getCheck(List<Integer> listIds) {
+        Map<Item, Integer> map = new HashMap();
         for (int i = 0; i < listOfItems.size(); i++) {
             int count = 0;
             for (int j = 0; j < listIds.size(); j++) {
                 if (listIds.get(j) == listOfItems.get(i).getId()) {
                     count++;
-                    map.put(listOfItems.get(i).getName(), count);
+                    map.put(listOfItems.get(i), count);
                 }
             }
         }
-        return map;
+        check = new Check(map, 0);
+        check.addToCheck();
+        return check;
     }
 
-    public int getTotalPrice(List<Integer> listIds) {
-        int sum = 0;
-        for (int i = 0; i < listOfItems.size(); i++) {
-            for (int j = 0; j < listIds.size(); j++) {
-                if (listIds.get(j) == listOfItems.get(i).getId()) {
-                    sum += listOfItems.get(i).getPrice();
-                }
-            }
-        }
-        return sum;
-    }
-
-    public void printCheck (List<Integer> listIds) {
-        Map<String, Integer> map= getCheck(listIds);
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+    public void printCheck() {
+        Map<Item, Integer> map = check.getAddedItems();
+        for (Map.Entry<Item, Integer> entry : map.entrySet()) {
             System.out.println(entry);
         }
         System.out.println("================");
-        System.out.println("Total price: " + getTotalPrice(listIds));
+        System.out.println("Total price: " + check.getPriceOfAddedItems());
     }
 }

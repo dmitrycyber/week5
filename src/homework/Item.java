@@ -1,5 +1,7 @@
 package homework;
 
+import java.util.Objects;
+
 public abstract class Item {
     private int id;
     private int price;
@@ -7,16 +9,8 @@ public abstract class Item {
 
     public Item(int id, int price, String name) {
         this.id = id;
-        this.price = price;
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.price = price;
     }
 
     public int getPrice() {
@@ -35,8 +29,31 @@ public abstract class Item {
         this.name = name;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString () {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id == item.id &&
+                price == item.price &&
+                name.equals(item.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, price, name);
     }
 }
