@@ -11,18 +11,18 @@ public class Main {
 
         System.out.println("-----------TASK1------------");
 
-        Shop1 shop = new Shop1();
-        shop.putInShop(keyboard1);
-        shop.putInShop(mouse1);
-        shop.putInShop(mouse2);
+        Shop1 shop1 = new Shop1();
+        shop1.putInShop(keyboard1);
+        shop1.putInShop(mouse1);
+        shop1.putInShop(mouse2);
         List<Integer> listOfIdsPurchasedItems1 = new ArrayList<>();
         listOfIdsPurchasedItems1.add(1);
         listOfIdsPurchasedItems1.add(1);
         listOfIdsPurchasedItems1.add(3);
         listOfIdsPurchasedItems1.add(3);
         listOfIdsPurchasedItems1.add(3);
-        shop.getCheck(listOfIdsPurchasedItems1);
-        shop.printCheck();
+        Check check1 = shop1.getCheck(listOfIdsPurchasedItems1);
+        System.out.println(check1);
 
         System.out.println("\n" +"-----------TASK2------------");
 
@@ -35,11 +35,11 @@ public class Main {
         List<Integer> listOfIdsPurchasedItems2= new ArrayList<>();
         listOfIdsPurchasedItems2.add(1);
         listOfIdsPurchasedItems2.add(2);
+        listOfIdsPurchasedItems2.add(2);
         listOfIdsPurchasedItems2.add(3);
         listOfIdsPurchasedItems2.add(3);
         listOfIdsPurchasedItems2.add(3);
-        listOfIdsPurchasedItems2.add(3);
-        shop2.getCheck(listOfIdsPurchasedItems2);
-        shop2.printCheck();
+        Check check2 = shop2.getCheck(listOfIdsPurchasedItems2);
+        System.out.println(check2);
     }
 }

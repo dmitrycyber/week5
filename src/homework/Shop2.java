@@ -7,7 +7,7 @@ import java.util.Map;
 public class Shop2 implements Shop {
     private Map<Item, Integer> mapOfItems = new HashMap<>();
     private Map<Integer, Item> idsOfItems = new HashMap<>();
-    private Check check;
+    //private Check check;
 
     void putInShop(Item item, Integer countOfItem) {
         if (item == null || countOfItem == null) {
@@ -26,58 +26,30 @@ public class Shop2 implements Shop {
     }
 
     public Check getCheck(List<Integer> listIds) {
-        Map<Item, Integer> checkMap = new HashMap<>();
-        Integer count;
+        Check check = new Check();
+        Integer countOfItemsInCheck;
+        Integer countOfItemsInShop;
         for (int i = 0; i < listIds.size(); i++) {
-            count = 0;
-            for (int j = 0; j < listIds.size(); j++) {
-                if (listIds.get(i).equals(listIds.get(j))) {
-                    count ++;
-                }
+            Item buyingItem = idsOfItems.get(listIds.get(i));
+            countOfItemsInCheck = check.getAddedItems().get(buyingItem);
+            countOfItemsInShop = mapOfItems.get(buyingItem);
+            if (countOfItemsInCheck == null) {
+                countOfItemsInCheck = 0;
             }
-            if (count < mapOfItems.get(idsOfItems.get((listIds.get(i))))) {
-                checkMap.put(idsOfItems.get(listIds.get(i)), count);
+            check.getAddedItems().put(buyingItem, countOfItemsInCheck + 1);
+            check.setPriceOfAddedItems(check.getPriceOfAddedItems() + buyingItem.getPrice());
+            if (countOfItemsInShop > 1) {
+                mapOfItems.put(buyingItem, countOfItemsInShop - 1);
             }
             else {
-                checkMap.put(idsOfItems.get(listIds.get(i)), mapOfItems.get(idsOfItems.get((listIds.get(i)))));
+                mapOfItems.remove(buyingItem);
             }
         }
-        check = new Check(checkMap, 0);
-        check.addToCheck();
-        deleteBuyingItemsFromShop(check);
         return check;
-    }
-
-    public void deleteBuyingItemsFromShop(Check check){
-        Map<Item, Integer> mapOfAddedItemsToCheck = check.getAddedItems();
-        for (Map.Entry<Item, Integer> entry : mapOfAddedItemsToCheck.entrySet()) {
-            if (mapOfItems.get(entry.getKey()) > entry.getValue()) {
-                mapOfItems.put(entry.getKey(), mapOfItems.get(entry.getKey()) - entry.getValue());
-            }
-            else {
-                mapOfItems.remove(entry.getKey());
-            }
-        }
-    }
-
-    public void printCheck() {
-        Map<Item, Integer> map = check.getAddedItems();
-        for (Map.Entry<Item, Integer> entry : map.entrySet()) {
-            System.out.println(entry);
-        }
-        System.out.println("================");
-        System.out.println("Total price: " + check.getPriceOfAddedItems());
-    }
-
-    public void setMapOfItems(Map<Item, Integer> mapOfItems) {
-        this.mapOfItems = mapOfItems;
     }
 
     public Map<Integer, Item> getIdsOfItems() {
         return idsOfItems;
     }
 
-    public void setIdsOfItems(Map<Integer, Item> idsOfItems) {
-        this.idsOfItems = idsOfItems;
-    }
 }

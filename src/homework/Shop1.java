@@ -1,9 +1,8 @@
 package homework;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class Shop1 implements Shop {
     private List<Item> listOfItems = new ArrayList<>();
@@ -17,27 +16,24 @@ public class Shop1 implements Shop {
     }
 
     public Check getCheck(List<Integer> listIds) {
-        Map<Item, Integer> map = new HashMap();
+        Check check = new Check();
+        Integer idOfBuyingItem;
+        Integer idOfItemInShop;
+        Item itemInShop;
         for (int i = 0; i < listOfItems.size(); i++) {
+            itemInShop = listOfItems.get(i);
+            idOfItemInShop = itemInShop.getId();
             int count = 0;
             for (int j = 0; j < listIds.size(); j++) {
-                if (listIds.get(j) == listOfItems.get(i).getId()) {
+                idOfBuyingItem = listIds.get(j);
+                if (idOfBuyingItem.equals(idOfItemInShop)) {
                     count++;
-                    map.put(listOfItems.get(i), count);
+                    check.getAddedItems().put(itemInShop, count);
+                    check.setPriceOfAddedItems(check.getPriceOfAddedItems() + itemInShop.getPrice());
                 }
             }
         }
-        check = new Check(map, 0);
-        check.addToCheck();
         return check;
     }
-
-    public void printCheck() {
-        Map<Item, Integer> map = check.getAddedItems();
-        for (Map.Entry<Item, Integer> entry : map.entrySet()) {
-            System.out.println(entry);
-        }
-        System.out.println("================");
-        System.out.println("Total price: " + check.getPriceOfAddedItems());
-    }
 }
+
