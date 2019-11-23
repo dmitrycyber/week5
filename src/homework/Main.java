@@ -1,11 +1,30 @@
 package homework;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.sun.javafx.webkit.theme.ScrollBarThemeImpl;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Keyboard keyboard1 = new Keyboard(1, 14, "Logitec");
+    public static void main(String[] args) throws IOException {
+
+        FileReader fileReader = new FileReader("src/homework/123.csv");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String productString = bufferedReader.readLine();
+
+        String[] split = productString.split(",");
+
+        Item item = new Item(Integer.parseInt(split[0]), split[1], Integer.parseInt(split[2]));
+        System.out.println(item);
+
+
+
+
+
+
+        /*Keyboard keyboard1 = new Keyboard(1, 14, "Logitec");
         Mouse mouse1 = new Mouse(2, 66, "Acer");
         Mouse mouse2 = new Mouse(3, 88, "A4Tech");
 
@@ -40,6 +59,6 @@ public class Main {
         listOfIdsPurchasedItems2.add(3);
         listOfIdsPurchasedItems2.add(3);
         Check check2 = shop2.getCheck(listOfIdsPurchasedItems2);
-        System.out.println(check2);
+        System.out.println(check2);*/
     }
 }

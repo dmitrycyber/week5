@@ -7,7 +7,6 @@ import java.util.Map;
 public class Shop2 implements Shop {
     private Map<Item, Integer> mapOfItems = new HashMap<>();
     private Map<Integer, Item> idsOfItems = new HashMap<>();
-    //private Check check;
 
     void putInShop(Item item, Integer countOfItem) {
         if (item == null || countOfItem == null) {

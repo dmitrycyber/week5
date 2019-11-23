@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Shop1 implements Shop {
     private List<Item> listOfItems = new ArrayList<>();
-    private Check check;
 
     void putInShop(Item item) {
         if (item == null) {

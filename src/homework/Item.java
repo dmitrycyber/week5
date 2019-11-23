@@ -2,12 +2,12 @@ package homework;
 
 import java.util.Objects;
 
-public abstract class Item {
+public class Item {
     private int id;
     private int price;
     private String name;
 
-    public Item(int id, int price, String name) {
+    public Item(int id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -38,8 +38,12 @@ public abstract class Item {
     }
 
     @Override
-    public String toString () {
-        return name;
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", price=" + price +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     @Override
