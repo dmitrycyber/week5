@@ -2,7 +2,7 @@ package homework;
 
 import java.util.Objects;
 
-public class Item {
+public abstract class Item {
     private int id;
     private int price;
     private String name;

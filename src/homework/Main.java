@@ -1,6 +1,5 @@
 package homework;
 
-import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -29,7 +28,7 @@ public class Main {
             Check check1 = shop1.getCheck(listOfIdsPurchasedItems1);
             System.out.println(check1);
         }
-        catch (NoItemsBuy e){
+        catch (NoBuyingItemsException e){
             System.out.println(e.getMessage());
         }
 
@@ -56,7 +55,7 @@ public class Main {
             Check check2 = shop2.getCheck(listOfIdsPurchasedItems2);
             System.out.println(check2);
         }
-        catch (NoItemsBuy e){
+        catch (NoBuyingItemsException e){
             System.out.println(e.getMessage());
 
         }
