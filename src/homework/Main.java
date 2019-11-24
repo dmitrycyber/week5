@@ -19,11 +19,11 @@ public class Main {
         shop1.putInShop(mouse4);
 
         List<Integer> listOfIdsPurchasedItems1 = new ArrayList<>();
-        listOfIdsPurchasedItems1.add(1);
+        /*listOfIdsPurchasedItems1.add(1);
         listOfIdsPurchasedItems1.add(2);
         listOfIdsPurchasedItems1.add(3);
         listOfIdsPurchasedItems1.add(4);
-        listOfIdsPurchasedItems1.add(4);
+        listOfIdsPurchasedItems1.add(4);*/
         try {
             Check check1 = shop1.getCheck(listOfIdsPurchasedItems1);
             System.out.println(check1);
@@ -47,10 +47,10 @@ public class Main {
         shop2.putInShop(keyboard4);
 
         List<Integer> listOfIdsPurchasedItems2 = new ArrayList<>();
+        /*listOfIdsPurchasedItems2.add(1);
         listOfIdsPurchasedItems2.add(1);
         listOfIdsPurchasedItems2.add(1);
-        listOfIdsPurchasedItems2.add(1);
-        listOfIdsPurchasedItems2.add(2);
+        listOfIdsPurchasedItems2.add(2);*/
         try {
             Check check2 = shop2.getCheck(listOfIdsPurchasedItems2);
             System.out.println(check2);

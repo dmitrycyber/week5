@@ -15,7 +15,7 @@ public class Sosedi implements Shop {
     }
 
     public Check getCheck(List<Integer> listIds){
-        if (listIds.size() == 0) {
+        if (listIds.isEmpty()) {
             throw new NoBuyingItemsException("List of buying products is empty");
         }
         Check check = new Check();
