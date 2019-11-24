@@ -39,11 +39,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", price=" + price +
-                ", name='" + name + '\'' +
-                '}';
+        return getClass().getSimpleName() + " " + name;
     }
 
     @Override

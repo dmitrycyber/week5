@@ -4,21 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Shop1 implements Shop {
+public class Sosedi implements Shop {
     private List<Item> listOfItems = new ArrayList<>();
 
-    public List<Item> getListOfItems() {
-        return listOfItems;
-    }
-
-    void putInShop(Item item) {
+    public void putInShop(Item item) {
         if (item == null) {
             return;
         }
         listOfItems.add(item);
     }
 
-    public Check getCheck(List<Integer> listIds) {
+    public Check getCheck(List<Integer> listIds){
+        if (listIds.size() == 0) {
+            throw new NoItemsBuy("List of buying product is empty");
+        }
         Check check = new Check();
         Integer idOfBuyingItem;
         Integer idOfItemInShop;
@@ -26,13 +25,10 @@ public class Shop1 implements Shop {
         for (int i = 0; i < listOfItems.size(); i++) {
             itemInShop = listOfItems.get(i);
             idOfItemInShop = itemInShop.getId();
-            int count = 0;
             for (int j = 0; j < listIds.size(); j++) {
                 idOfBuyingItem = listIds.get(j);
                 if (idOfBuyingItem.equals(idOfItemInShop)) {
-                    count++;
-                    check.getAddedItems().put(itemInShop, count);
-                    check.setPriceOfAddedItems(check.getPriceOfAddedItems() + itemInShop.getPrice());
+                    check.addItemsToCheck(itemInShop);
                 }
             }
         }

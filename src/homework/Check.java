@@ -7,16 +7,19 @@ public class Check {
     private Map<Item, Integer> addedItems = new HashMap<>();
     private Integer priceOfAddedItems = 0;
 
-    public Map<Item, Integer> getAddedItems() {
-        return addedItems;
-    }
-
-    public Integer getPriceOfAddedItems() {
-        return priceOfAddedItems;
-    }
-
-    public void setPriceOfAddedItems(Integer priceOfAddedItems) {
-        this.priceOfAddedItems = priceOfAddedItems;
+    public void addItemsToCheck(Item item){
+        if (item == null) {
+            return;
+        }
+        Integer integer = addedItems.get(item);
+        if (integer == null) {
+            integer = 1;
+            addedItems.put(item, integer);
+        }
+        else {
+            addedItems.put(item, addedItems.get(item) + 1);
+        }
+        priceOfAddedItems += item.getPrice();
     }
 
     @Override
